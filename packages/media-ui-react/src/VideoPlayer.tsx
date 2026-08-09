@@ -9,6 +9,7 @@ export interface VideoPlayerProps {
   muted?: boolean;
   width?: number | string;
   height?: number | string;
+  onPlay?: () => void;
   children?: ReactNode;
 }
 
@@ -21,6 +22,7 @@ export function VideoPlayer({
   muted = false,
   width = "100%",
   height = "auto",
+  onPlay,
   children,
 }: VideoPlayerProps) {
   return (
@@ -35,6 +37,7 @@ export function VideoPlayer({
         width={width}
         height={height}
         playsInline
+        onPlay={onPlay}
       >
         Your browser does not support video playback.
       </video>
