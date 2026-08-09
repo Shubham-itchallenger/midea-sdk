@@ -7,5 +7,6 @@
   "types": "./dist/index.d.ts",
   "scripts": { "build": "tsc", "typecheck": "tsc --noEmit" },
   "peerDependencies": { "react": ">=18", "react-native": ">=0.70" },
+  "peerDependenciesMeta": { "react-native": { "optional": true } },
   "dependencies": { "@media/media-core": "1.0.0" }
 }
