@@ -1,0 +1,10 @@
+{
+  "name": "@media/media-ui-native",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": { "build": "tsc", "typecheck": "tsc --noEmit" },
+  "peerDependencies": { "react": ">=18", "react-native": ">=0.70" }
+}

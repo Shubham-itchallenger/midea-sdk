@@ -10,6 +10,8 @@ export interface MediaPhoto {
   photographerUrl: string;
   sourceUrl: string;
   thumbnailUrl: string;
+  /** Direct source image suitable for a consumer-controlled download. */
+  imageUrl: string;
 }
 
 export interface MediaVideoFile {

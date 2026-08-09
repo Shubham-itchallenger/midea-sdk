@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { useLightbox } from "./useLightbox";
 
 export interface LightboxProps {
   open: boolean;
@@ -6,6 +7,9 @@ export interface LightboxProps {
   alt?: string;
   onClose: () => void;
   children?: ReactNode;
+  className?: string;
+  contentClassName?: string;
+  closeButtonClassName?: string;
 }
 
 export function Lightbox({
@@ -14,27 +18,32 @@ export function Lightbox({
   alt = "",
   onClose,
   children,
+  className,
+  contentClassName,
+  closeButtonClassName,
 }: LightboxProps) {
+  const { getDialogProps, getBackdropProps } = useLightbox(open, onClose);
   if (!open) {
     return null;
   }
 
   return (
     <div
-      role="dialog"
-      aria-modal="true"
+      {...getDialogProps()}
       aria-label="Media preview"
-      onClick={onClose}
+      {...getBackdropProps()}
+      className={className}
     >
       <button
         type="button"
         aria-label="Close media preview"
         onClick={onClose}
+        className={closeButtonClassName}
       >
         ×
       </button>
 
-      <div onClick={(event) => event.stopPropagation()}>
+      <div className={contentClassName} onClick={(event) => event.stopPropagation()}>
         <img src={src} alt={alt} />
         {children}
       </div>

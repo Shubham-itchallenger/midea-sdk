@@ -191,6 +191,7 @@ function mapPhoto(photo: {
   photographer_url: string;
   src: {
     medium: string;
+    original: string;
   };
 }): MediaPhoto {
   return {
@@ -203,6 +204,7 @@ function mapPhoto(photo: {
     photographerUrl: photo.photographer_url,
     sourceUrl: photo.url,
     thumbnailUrl: photo.src.medium,
+    imageUrl: photo.src.original,
   };
 }
 

@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Media UI API</title><style>body{font:16px system-ui,sans-serif;max-width:860px;margin:3rem auto;padding:0 1rem;line-height:1.55}code{background:#f1f3f5;padding:.15rem .3rem}pre{background:#16181d;color:#f5f5f5;padding:1rem;overflow:auto}h1,h2{line-height:1.2}</style></head><body>
+<h1>Headless media UI</h1><p><code>@media/media-ui-react</code> and <code>@media/media-ui-native</code> do not fetch data, import an SDK, or ship a design system. The application supplies media, callbacks, markup, and CSS.</p>
+<h2>React grid</h2><pre>const grid = useMediaGrid({ hasMore, loading, onLoadMore });
+&lt;section {...grid.getGridProps()}&gt;
+  {items.map(item =&gt; &lt;article {...grid.getItemProps()}&gt;...&lt;/article&gt;)}
+  &lt;div {...grid.getLoadMoreSentinelProps()} /&gt;
+&lt;/section&gt;</pre>
+<p><code>MediaGrid</code> is an optional unstyled renderer around the same behaviour. Apply your own grid layout with <code>style</code> or <code>className</code>.</p>
+<h2>Lightbox and reels</h2><p><code>useLightbox</code> provides dialog and backdrop prop getters; the <code>Lightbox</code> renderer also handles Escape and focus restoration. <code>useReelSwiper</code> detects the active vertical reel through <code>IntersectionObserver</code>. Connect its active-item callback to the wrapper’s view event in the app.</p>
+<h2>React Native</h2><p>The native prop getters adapt to <code>FlatList</code> (<code>onEndReached</code>, paging, viewability) and <code>Modal</code> (<code>visible</code>, <code>onRequestClose</code>), while leaving all presentation to the consuming mobile app.</p>
+</body></html>

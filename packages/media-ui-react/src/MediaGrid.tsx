@@ -1,4 +1,5 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import { useMediaGrid } from "./useMediaGrid";
 
 export interface MediaGridItem {
   id: string;
@@ -6,32 +7,38 @@ export interface MediaGridItem {
   alt?: string;
   width?: number;
   height?: number;
+  downloadUrl?: string;
 }
 
 export interface MediaGridProps {
   items: MediaGridItem[];
   renderItem?: (item: MediaGridItem) => ReactNode;
-  columns?: number;
-  gap?: number;
+  /** Styling is deliberately supplied by the consuming application. */
+  style?: CSSProperties;
+  className?: string;
+  hasMore?: boolean;
+  loading?: boolean;
+  onLoadMore?: () => void;
 }
 
 export function MediaGrid({
   items,
   renderItem,
-  columns = 4,
-  gap = 16,
+  style,
+  className,
+  hasMore,
+  loading,
+  onLoadMore,
 }: MediaGridProps) {
+  const { getGridProps, getItemProps, getLoadMoreSentinelProps } = useMediaGrid({ hasMore, loading, onLoadMore });
   return (
     <div
-      role="list"
-      style={{
-        display: "grid",
-        gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
-        gap,
-      }}
+      {...getGridProps()}
+      className={className}
+      style={style}
     >
       {items.map((item) => (
-        <div key={item.id} role="listitem">
+        <div key={item.id} {...getItemProps()}>
           {renderItem ? (
             renderItem(item)
           ) : (
@@ -45,6 +52,7 @@ export function MediaGrid({
           )}
         </div>
       ))}
+      {hasMore && <div {...getLoadMoreSentinelProps()} />}
     </div>
   );
 }

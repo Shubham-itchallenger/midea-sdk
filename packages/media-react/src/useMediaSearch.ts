@@ -5,7 +5,7 @@ import type {
 } from "@media/media-core";
 import { useMedia } from "./useMedia";
 
-interface UseMediaSearchOptions {
+export interface UseMediaSearchOptions {
   query: string;
   page?: number;
   perPage?: number;

@@ -9,7 +9,6 @@
   "typecheck": "tsc --noEmit"
 },
   "dependencies": {
-    "@media/media-core": "1.0.0",
     "@media/media-react": "1.0.0",
     "@media/media-ui-react": "1.0.0",
     "react": "^19.0.0",

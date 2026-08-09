@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Media SDK API</title><style>body{font:16px system-ui,sans-serif;max-width:860px;margin:3rem auto;padding:0 1rem;line-height:1.55}code{background:#f1f3f5;padding:.15rem .3rem}pre{background:#16181d;color:#f5f5f5;padding:1rem;overflow:auto}h1,h2{line-height:1.2}</style></head><body>
+<h1>Media SDK</h1><p><code>@media/media-core</code> is framework-independent. Configure it once; its cache, events, and typed Pexels mapping remain outside UI code.</p>
+<h2>Core client</h2><pre>import { createMediaClient } from &quot;@media/media-core&quot;;
+const media = createMediaClient({ apiKey });
+const result = await media.search({ query: &quot;forest&quot;, page: 1, perPage: 20 });</pre>
+<p>The client exposes <code>search</code>, <code>curated</code>, <code>getPhoto</code>, <code>getVideo</code>, <code>trackView</code>, <code>trackDownload</code>, <code>onView</code>, and <code>onDownload</code>. Searches and single-item fetches are memory-cached. Invalid queries, missing keys, and API failures throw typed <code>MediaError</code> values.</p>
+<h2>React and React Native</h2><pre>const { data, loading, error } = useMediaSearch({ query, page, perPage: 20 });
+const media = useMedia();
+media.trackView(asset.id);</pre>
+<p>Mount <code>MediaProvider</code> at the app root. Never import the core in the app and never construct a client during render. Subscribe to events inside an effect and return the unsubscription cleanup.</p>
+<p>See <code>skills/media-react-wiring/SKILL.md</code> in the repository for the AI-assistant consumption contract.</p>
+</body></html>
